@@ -1,0 +1,77 @@
+
+________________________
+Distributed File System
+________________________
+Properties:
+	 * 
+	 * Contains file table
+	 * Client only knows about Root
+	 * Root knows the storage location/server of a file
+	 * 
+___ _____________________
+Flow:
+	 * 
+	 * if client needs fileA.txt, then it asks Root server.. then Root server searches the
+	 * file table \ and if the file is present \ Root will see if the file is distributed 
+	 * on multiple storages. 
+_____ ___________________
+Mechanism:
+	 *
+	 * let's say the fileA is distributed on four different servers and has 4 blocks 
+	 * so the root will get each block from one of the server or from a single server if all 
+	 * are available on that server, if not then it will move on to Next server and ask for 
+	 * that file block
+	 
+	 
+	 -------------------------------------------------------------------------------------
+	 DONE
+	 -----
+	 
+	 1. user uploads a file data: 	[ For now the file data is written on console "scanner input". Later user will give the path of the file ]
+	 2. the whole data of the file becomes a single string 
+	 3. whole string goes via TCP 
+	 4. working on the different machines as well , // checked on mubashir's laptop
+	 5. client gives the name of file while uploading its data..?
+	 6. Create FileTable in "Root" server: // maintaining the records of all files
+		a. created a class: with attributes: filename, blockA-name, blockB-name, so on...
+		b. String serverA, serverB ;  // these contain the names of the blocks
+			for example: "studentfile.txt" has 4 blocks and its 3rd block is stored on ServerA
+			so, one of the filetable class has attribute [ serverA = "studentfile3.txt" ] 
+	 
+	 
+	---------------------------------------------------------------------------------------
+	 Update
+	-------
+	
+	1. We have to send data back to clients
+	2. show the client that the file is saved with this name i.e. userdata.txt is saved 	AS		 userdata.3.txt
+	
+	
+	
+	
+	..........................................................................................................................
+	Problem 
+	--------
+	User uploaded 2 files with the same name :
+	Original  Names: 		userdata.txt , userdata.txt
+	Modified Names:      userdata.2.txt 	, userdata.3.txt
+	
+	Now when the user asks for the userdata.txt, which one we'll retrieve...??? 
+	One option is that when we make a unique name, we tell the user that your file has been saved with this name i.e. userdata.3.txt 
+	
+	
+	
+	----------------------------------------------------------------------------------------
+	Security:
+	----------
+	As for now user can directly access serverA and serverB, if it knows the IP and the Port. That's not good. 	
+	That's why I used TCP, so I can first establish a secure connection. 
+
+	1. 	
+	We Restrict the connection to the IP Address of the Root server, so no other machine can access/connect to ServerA, ServerB...
+	
+	2.
+		Now what we can do to restrict this action/access for the Root Server, is that ServerA changes its port randomly every time it is accessed by the Root.
+	And returns the updated Port Number to the Root Server before the connection ends. 
+	So, in this way the port for the ServerA and the ServerB will only be known to the Root Server
+	 
