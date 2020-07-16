@@ -1,0 +1,7 @@
+first,.0
+second,.8
+first,.2
+two,.6
+first,.4
+adnan,.2
+test,.8
