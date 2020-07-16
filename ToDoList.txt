@@ -74,4 +74,25 @@ Mechanism:
 		Now what we can do to restrict this action/access for the Root Server, is that ServerA changes its port randomly every time it is accessed by the Root.
 	And returns the updated Port Number to the Root Server before the connection ends. 
 	So, in this way the port for the ServerA and the ServerB will only be known to the Root Server
+	
+	
+	
+	------------------------------------------------------------------------------------------
+	AFTER DEMO 22 MAY, 2019
+	------------------------------------------------------------------------------------------
+	
+	Sir Adnan: sequential is bad.     -- Very few number of Servers 
+	
+	``````````````````````````````````````````````````````````````````
+	filedata = filedata + requestA(userfilename+tag+".A.txt");		
+	filedata = filedata + requestB(userfilename+tag+".B.txt");
+	```````````````````````````````````````````````````````````````````
+	Hamza & Azhar:  what if B sends its data before A .
+	
+	how will you manage that all servers send their data one after the other. Exactly IN ORDER .. !!..?
+	Sir Adnan: keep track of the offsets of the filedata in Servers;
+	
+	
+	
+	
 	 
